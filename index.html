@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Control de Asistencia</title>
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Pompiere|Ubuntu" rel="stylesheet"> 
+  <script type="text/javascript" src="js/ajax.js"></script>
+</head>
+<body>
+  <script src="js/jquery-3.1.1.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+    });
+  </script>
+
+  <!--Header cutre-->
+  <div class="row blue white-text z-depth-1">
+    <div class="col l8 offset-l2 m10 offset-m1 s12 center header">
+      <h2>Control de Asistencia</h2>
+    </div>
+  </div>
+
+  <!--Inicio de menú colapsable-->
+  <div class="row">
+    <div class="col l6 offset-l3 m8 offset-m2 s12 z-depth-1">
+      <ul class="collapsible" data-collapsible="accordion">
+        
+        <!--Sección de check-in-->
+        <li>
+          <div class="collapsible-header"><i class="material-icons green-text">call_received</i>Registrar entrada</div>
+          <div class="collapsible-body">
+            <div class="row center">
+              <form class="col l6 offset-l3 m8 offset-m2 s12" action="" onsubmit="registrarEntrada(); return false" name="checkin">
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="nickname">Apodo</label>
+                      <input type="text" class="form-control" id="nickname" name="nickname" required="true">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="password">Contraseña</label>
+                      <input type="password" class="form-control" id="password" name="password" required="true">
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn blue lighten-2">Registrar entrada</button>
+              </form>
+            </div>
+            <div class="row center" id="estado_checkin"></div>
+          </div>
+        </li>
+
+        <!--Sección de check-out-->
+        <li>
+          <div class="collapsible-header"><i class="material-icons red-text">call_made</i>Registrar salida</div>
+          <div class="collapsible-body">
+            <div class="row center">
+              <form class="col l6 offset-l3 m8 offset-m2 s12" action="" onsubmit="registrarSalida(); return false" name="checkout">
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="nickname">Apodo</label>
+                      <input type="text" class="form-control" id="nickname" name="nickname" required="true">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="password">Contraseña</label>
+                      <input type="password" class="form-control" id="password" name="password" required="true">
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn blue lighten-2">Registrar salida</button>
+              </form>
+            </div>
+            <div class="row center" id="estado_checkout"></div>
+          </div>
+        </li>
+
+        <!--Sección para obtener la información de los becarios-->
+        <li>
+          <div class="collapsible-header"><i class="material-icons blue-text">info</i>Información de becarios</div>
+          <div class="collapsible-body">
+            <div class="row center">
+              <form class="col l6 offset-l3 m8 offset-m2 s12" action="" onsubmit="mostrarHorario(); return false" name="horario">
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="nickname">Apodo</label>
+                      <input type="text" class="form-control" id="nickname" name="nickname" required="true">
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn blue lighten-2">Obtener información</button>
+              </form>
+            </div>
+            <div class="row center" id="info"></div>
+          </div>
+        </li>
+
+        <!--Sección para registrar a los becarios en el sistema-->
+        <li>
+          <div class="collapsible-header"><i class="material-icons blue-text darken-2">library_add</i>Registrar becario</div>
+          <div class="collapsible-body">
+            <div class="row center">
+              <form class="col l6 offset-l3 m8 offset-m2 s12" action="" onsubmit="registrarBecario(); return false" name="nuevo_becario">
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="nickname">Apodo</label>
+                      <input type="text" class="form-control" id="nickname" name="nickname" required="true">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="name">Nombre</label>
+                      <input type="text" class="form-control" id="name" name="name" required="true">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field"> 
+                    <div class="form-group">
+                      <label class="control-label" for="password">Contraseña</label>
+                      <input type="password" class="form-control" id="password" name="password" required="true">
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn blue lighten-2">Registrar</button>
+              </form>
+            </div>
+            <div class="row center" id="estado_registro"></div>
+          </div>
+        </li>
+
+        <!--Ayuda-->
+        <li>
+          <div class="collapsible-header"><i class="material-icons blue-text darken-2">help</i>Ayuda</div>
+          <div class="collapsible-body">
+            <div class="row">
+              <div class="col l8 offset-l2 m8 offset-m2 s12">
+                <div class="row">
+                  <span>Aquí va la aiuda</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--Fin de menú colapsable-->
+
+</body>
+</html>
