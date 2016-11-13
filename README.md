@@ -13,3 +13,6 @@
 
 ## Extras
 * AJAX
+
+## Notas
+El archivo `bd\ControlAsistencia.sql` se debe importar en un RDBMS MySQL. No se debe alojar junto con el resto del contenido del proyecto.
